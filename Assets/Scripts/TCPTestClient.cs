@@ -5,17 +5,19 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class TCPTestClient : MonoBehaviour {  	
 	#region private members
     public string serverIpAddr = "127.0.0.1";
     public int port = 8052; 	
 	private TcpClient socketConnection; 	
-	private Thread clientReceiveThread; 	
+	private Thread clientReceiveThread; 
+
+	private bool isConnected = false;	
 	#endregion  	
 	// Use this for initialization 	
 	void Start () {
-		ConnectToTcpServer();     
+		//ConnectToTcpServer();     
 	}  	
 	// Update is called once per frame
 	void Update () {         
@@ -26,11 +28,15 @@ public class TCPTestClient : MonoBehaviour {
 	/// <summary> 	
 	/// Setup socket connection. 	
 	/// </summary> 	
-	private void ConnectToTcpServer () { 		
+	public void ConnectToTcpServer () { 		
 		try {  			
+			//InputField ObjText = ObjFind.gameObject.GetComponent<InputField>();
+            //serverIpAddr = GameObject.Find("InputFieldServ").GetComponent<Text>().text;
+			//Debug.Log("ICI" + serverIpAddr);
 			clientReceiveThread = new Thread (new ThreadStart(ListenForData)); 			
 			clientReceiveThread.IsBackground = true; 			
-			clientReceiveThread.Start();  		
+			clientReceiveThread.Start();  
+			isConnected = true;		
 		} 		
 		catch (Exception e) { 			
 			Debug.Log("On client connect exception " + e); 		
@@ -69,7 +75,8 @@ public class TCPTestClient : MonoBehaviour {
 		if (socketConnection == null) {             
 			return;         
 		}  		
-		try { 			
+		try { 	
+
 			// Get a stream object for writing. 			
 			NetworkStream stream = socketConnection.GetStream(); 			
 			if (stream.CanWrite) {                 
@@ -79,7 +86,9 @@ public class TCPTestClient : MonoBehaviour {
 				// Write byte array to socketConnection stream.                 
 				stream.Write(clientMessageAsByteArray, 0, clientMessageAsByteArray.Length);                 
 				Debug.Log("Client sent his message - should be received by server");             
-			}         
+			} 
+	
+        
 		} 		
 		catch (SocketException socketException) {             
 			Debug.Log("Socket exception: " + socketException);         

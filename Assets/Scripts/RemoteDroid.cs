@@ -15,6 +15,8 @@ public class RemoteDroid : MonoBehaviour
     void Update()
     {
         Vector3 acc = Input.acceleration;
+        string message = acc.x.ToString() + ";" + acc.y.ToString() + ";" + acc.z.ToString();
+        //Debug.Log(message);
         //tcp.SendMessage("(" + Input.acceleration.x.ToString() + ";" + Input.acceleration.y.ToString() + ")");
     }
 
