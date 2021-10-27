@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class TCPTestClient : MonoBehaviour {  	
 	#region private members
     public string serverIpAddr = "127.0.0.1";
+	public InputField IpInputField;
+
     public int port = 8052; 	
 	private TcpClient socketConnection; 	
 	private Thread clientReceiveThread; 
@@ -21,9 +23,9 @@ public class TCPTestClient : MonoBehaviour {
 	}  	
 	// Update is called once per frame
 	void Update () {         
-		if (Input.GetKeyDown(KeyCode.Space)) {             
+		/*if (Input.GetKeyDown(KeyCode.Space)) {             
 			SendMessage("Space");         
-		}     
+		}     */
 	}  	
 	/// <summary> 	
 	/// Setup socket connection. 	
@@ -33,6 +35,9 @@ public class TCPTestClient : MonoBehaviour {
 			//InputField ObjText = ObjFind.gameObject.GetComponent<InputField>();
             //serverIpAddr = GameObject.Find("InputFieldServ").GetComponent<Text>().text;
 			//Debug.Log("ICI" + serverIpAddr);
+			serverIpAddr = IpInputField.text;
+			Debug.Log(serverIpAddr);
+
 			clientReceiveThread = new Thread (new ThreadStart(ListenForData)); 			
 			clientReceiveThread.IsBackground = true; 			
 			clientReceiveThread.Start();  
@@ -65,7 +70,7 @@ public class TCPTestClient : MonoBehaviour {
 			}         
 		}         
 		catch (SocketException socketException) {             
-			Debug.Log("Socket exception: " + socketException);         
+			Debug.Log("Socket exception: "+ " on " + serverIpAddr + socketException );         
 		}     
 	}  	
 	/// <summary> 	
