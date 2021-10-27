@@ -10,6 +10,7 @@ public class TCPTestClient : MonoBehaviour {
 	#region private members
     public string serverIpAddr = "127.0.0.1";
 	public InputField IpInputField;
+	public Text debugZone;
 
     public int port = 8052; 	
 	private TcpClient socketConnection; 	
@@ -70,7 +71,8 @@ public class TCPTestClient : MonoBehaviour {
 			}         
 		}         
 		catch (SocketException socketException) {             
-			Debug.Log("Socket exception: "+ " on " + serverIpAddr + socketException );         
+			Debug.Log("Socket exception: "+ " on " + serverIpAddr + socketException );
+			debugZone.text = "Socket exception: "+ " on " + serverIpAddr + socketException.ToString();         
 		}     
 	}  	
 	/// <summary> 	
