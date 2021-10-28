@@ -157,6 +157,7 @@ MonoBehaviour:
   IpInputField: {fileID: 248738966}
   nameField: {fileID: 226400106}
   port: 42422
+  debugZone: {fileID: 0}
 --- !u!4 &41271915
 Transform:
   m_ObjectHideFlags: 0
@@ -731,7 +732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &234170943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +747,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ip: 127.0.0.1
   port: 42422
+  remotes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &234170944
 Transform:
   m_ObjectHideFlags: 0
@@ -1172,7 +1178,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Left
+          m_StringArgument: 201;Left
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 0}
@@ -1505,7 +1511,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: A
+          m_StringArgument: 201;A
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 0}
@@ -1688,7 +1694,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Down
+          m_StringArgument: 201;Down
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 0}
@@ -2069,7 +2075,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Right
+          m_StringArgument: 201;Right
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 0}
@@ -2660,7 +2666,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Up
+          m_StringArgument: 201;Up
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 0}
@@ -2883,7 +2889,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: B
+          m_StringArgument: 201;B
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 0}

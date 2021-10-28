@@ -26,7 +26,7 @@ public class RemoteDroid : MonoBehaviour
     public void clickOnButton(string buttonName)
     {
         Debug.Log("CLICK" + name + ";" + buttonName);
-        tcp.SendMessage(name + ";" + buttonName);
+        tcp.SendMessage("201" + ";" + buttonName);
     }
 
 

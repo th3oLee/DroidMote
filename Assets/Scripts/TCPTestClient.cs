@@ -46,7 +46,10 @@ public class TCPTestClient : MonoBehaviour {
 			clientReceiveThread = new Thread (new ThreadStart(ListenForData)); 			
 			clientReceiveThread.IsBackground = true; 			
 			clientReceiveThread.Start();  
-			isConnected = true;		
+			isConnected = true;	
+			Debug.Log("Connect to server...");
+			System.Threading.Thread.Sleep(2000);
+			SendMessage("200;"+name);	
 		} 		
 		catch (Exception e) { 			
 			Debug.Log("On client connect exception " + e); 		
