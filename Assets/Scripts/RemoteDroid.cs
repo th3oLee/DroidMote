@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class RemoteDroid : MonoBehaviour
 {
+
     TCPTestClient tcp;
     // Start is called before the first frame update
     void Start()
@@ -22,9 +25,11 @@ public class RemoteDroid : MonoBehaviour
 
     public void clickOnButton(string buttonName)
     {
-        tcp.SendMessage(buttonName);
+        Debug.Log("CLICK" + name + ";" + buttonName);
+        tcp.SendMessage(name + ";" + buttonName);
     }
-    
+
+
 
 
 }

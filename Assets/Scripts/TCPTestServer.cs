@@ -24,7 +24,7 @@ public class TCPTestServer : MonoBehaviour {
 	private TcpClient connectedTcpClient; 	
 	#endregion 	
     public string ip = "127.0.0.1";
-    public int port = 8052;
+    public int port = 42422;
 		
 	// Use this for initialization
 	void Start () { 		

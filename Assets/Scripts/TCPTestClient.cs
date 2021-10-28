@@ -10,8 +10,9 @@ public class TCPTestClient : MonoBehaviour {
 	#region private members
     public string serverIpAddr = "127.0.0.1";
 	public InputField IpInputField;
-
-    public int port = 8052; 	
+    private string name = "Player";
+    public InputField nameField;
+    public int port = 42422; 	
 	private TcpClient socketConnection; 	
 	private Thread clientReceiveThread; 
 
@@ -36,6 +37,8 @@ public class TCPTestClient : MonoBehaviour {
             //serverIpAddr = GameObject.Find("InputFieldServ").GetComponent<Text>().text;
 			//Debug.Log("ICI" + serverIpAddr);
 			serverIpAddr = IpInputField.text;
+			name = nameField.text;
+
 			Debug.Log(serverIpAddr);
 
 			clientReceiveThread = new Thread (new ThreadStart(ListenForData)); 			
@@ -85,7 +88,7 @@ public class TCPTestClient : MonoBehaviour {
 			// Get a stream object for writing. 			
 			NetworkStream stream = socketConnection.GetStream(); 			
 			if (stream.CanWrite) {                 
-				string clientMessage = message; 				
+				string clientMessage = name + ";" + message; 				
 				// Convert string message to byte array.                 
 				byte[] clientMessageAsByteArray = Encoding.ASCII.GetBytes(clientMessage); 				
 				// Write byte array to socketConnection stream.                 
