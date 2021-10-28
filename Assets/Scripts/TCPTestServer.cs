@@ -55,7 +55,9 @@ public class TCPTestServer : MonoBehaviour {
 		}
 		for(int i = 0; i < remotes.Length; i++)
 		{
-			PlayerTexts[i].GetComponent<UnityEngine.UI.Text>().text  = remotes[i].name + " " + remotes[i].lastInput + " " + remotes[i].accelerometter.x+ " " + remotes[i].accelerometter.y+ " " + remotes[i].accelerometter.z;
+			PlayerTexts[i].GetComponent<UnityEngine.UI.Text>().text  = remotes[i].name + " " + remotes[i].lastInput + "\n"  + remotes[i].accelerometter.x+ " " + remotes[i].accelerometter.y+ " " + remotes[i].accelerometter.z +"\n"
+			+ remotes[i].gravity.x + " " + remotes[i].gravity.y + " " + remotes[i].gravity.z + "\n"
+			+ remotes[i].attitude.x + " " + remotes[i].attitude.y + " " + remotes[i].attitude.z + " " + remotes[i].attitude.w;
 		}
 	}  	
 	
@@ -139,14 +141,44 @@ public class TCPTestServer : MonoBehaviour {
 			// Accelerometter
 			Debug.Log(message);
 			string[] words = message.Split(';');
+
 			Vector3 vec = new Vector3();
 			vec.x = float.Parse(words[2]);
 			vec.y = float.Parse(words[3]);
 			vec.z = float.Parse(words[4]);
+
+
 			int PlayerId = findPlayerByName(words[0]);
 			remotes[PlayerId].accelerometter = vec;
 
 		}
+		if(message.Contains("203"))
+		{
+			Debug.Log(message);
+			string[] words = message.Split(';');
+			Vector3 vec2 = new Vector3();
+			vec2.x = float.Parse(words[2]);
+			vec2.y = float.Parse(words[3]);
+			vec2.z = float.Parse(words[4]);
+			int PlayerId = findPlayerByName(words[0]);
+			remotes[PlayerId].gravity = vec2;
+
+		}
+		if(message.Contains("204"))
+		{
+			Debug.Log(message);
+			string[] words = message.Split(';');
+			Quaternion att = new Quaternion();
+			att.x = float.Parse(words[2]);
+			att.y = float.Parse(words[3]);
+			att.z = float.Parse(words[4]);
+			att.w = 0.5f;//float.Parse(words[5]);
+
+			int PlayerId = findPlayerByName(words[0]);
+			remotes[PlayerId].attitude = att;
+
+		}
+
 	}
 
 	private void addRemote(string playerName)

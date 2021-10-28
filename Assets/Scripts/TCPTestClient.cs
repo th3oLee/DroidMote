@@ -22,7 +22,9 @@ public class TCPTestClient : MonoBehaviour {
 	#endregion  	
 	// Use this for initialization 	
 	void Start () {
-		//ConnectToTcpServer();     
+		//ConnectToTcpServer();
+		//Input.gyro.enabled = true;
+     
 	}  	
 	// Update is called once per frame
 	void Update () {         
@@ -30,9 +32,26 @@ public class TCPTestClient : MonoBehaviour {
 		if(isConnected)
 		{
 			Vector3 acc = Input.acceleration;
+			Vector3 grav = Input.gyro.gravity;
+			Quaternion rot = Input.gyro.attitude;
         	string message = "202;" + Math.Round(acc.x,3).ToString() + ";" + Math.Round(acc.y,3).ToString() + ";" + Math.Round(acc.z,3).ToString();
-        	Debug.Log(message);
+			Debug.Log(message);
+        	SendMessage("Acc: " + message);
+
+			System.Threading.Thread.Sleep(10);
+
+
+			message = "203;" + Math.Round(grav.x,3).ToString() + ";" + Math.Round(grav.y,3).ToString() + ";" + Math.Round(grav.z,3).ToString();
+        	Debug.Log("Grav: "+message);
         	SendMessage(message);
+
+			System.Threading.Thread.Sleep(10);
+
+
+			message = "204;" + Math.Round(rot.x,3).ToString() + ";" + Math.Round(rot.y,3).ToString() + ";" + Math.Round(rot.z,3).ToString() + ";"  + Math.Round(rot.w,3).ToString();
+        	Debug.Log("Att: "+ message);
+        	SendMessage(message);
+
 		}
 
 	}  	
