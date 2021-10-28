@@ -26,9 +26,15 @@ public class TCPTestClient : MonoBehaviour {
 	}  	
 	// Update is called once per frame
 	void Update () {         
-		/*if (Input.GetKeyDown(KeyCode.Space)) {             
-			SendMessage("Space");         
-		}     */
+
+		if(isConnected)
+		{
+			Vector3 acc = Input.acceleration;
+        	string message = "202;" + Math.Round(acc.x,3).ToString() + ";" + Math.Round(acc.y,3).ToString() + ";" + Math.Round(acc.z,3).ToString();
+        	Debug.Log(message);
+        	SendMessage(message);
+		}
+
 	}  	
 	/// <summary> 	
 	/// Setup socket connection. 	
@@ -49,7 +55,8 @@ public class TCPTestClient : MonoBehaviour {
 			isConnected = true;	
 			Debug.Log("Connect to server...");
 			System.Threading.Thread.Sleep(2000);
-			SendMessage("200;"+name);	
+			SendMessage("200;"+name);
+			isConnected = true;	
 		} 		
 		catch (Exception e) { 			
 			Debug.Log("On client connect exception " + e); 		

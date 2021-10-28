@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RemoteServerSide : MonoBehaviour
 {
-    string lastInput;
-    Vector3 accelerometter;
-    bool isConnected = false;
-    string name;
+    public string lastInput;
+    public bool isConsumed = true;
+    public Vector3 accelerometter;
+    public bool isConnected = false;
+    public string name = "Disconnected Player";
 }

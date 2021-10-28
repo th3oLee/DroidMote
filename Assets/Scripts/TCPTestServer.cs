@@ -55,7 +55,7 @@ public class TCPTestServer : MonoBehaviour {
 		}
 		for(int i = 0; i < remotes.Length; i++)
 		{
-			PlayerTexts[i].GetComponent<UnityEngine.UI.Text>().text  = remotes[i].name + " " + remotes[i].lastInput;
+			PlayerTexts[i].GetComponent<UnityEngine.UI.Text>().text  = remotes[i].name + " " + remotes[i].lastInput + " " + remotes[i].accelerometter.x+ " " + remotes[i].accelerometter.y+ " " + remotes[i].accelerometter.z;
 		}
 	}  	
 	
@@ -132,11 +132,19 @@ public class TCPTestServer : MonoBehaviour {
 			string[] words = message.Split(';');
 			int PlayerId = findPlayerByName(words[0]);
 			remotes[PlayerId].lastInput = words[2];
+			remotes[PlayerId].isConsumed = false;
 		}
 		if(message.Contains("202"))
 		{
 			// Accelerometter
 			Debug.Log(message);
+			string[] words = message.Split(';');
+			Vector3 vec = new Vector3();
+			vec.x = float.Parse(words[2]);
+			vec.y = float.Parse(words[3]);
+			vec.z = float.Parse(words[4]);
+			int PlayerId = findPlayerByName(words[0]);
+			remotes[PlayerId].accelerometter = vec;
 
 		}
 	}
